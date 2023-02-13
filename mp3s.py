@@ -5,10 +5,11 @@ import glob
 import string
 import eyed3
 import time
+import junk
 
 args = sys.argv[1:]
 
-#Substitui o - dos argumentos por um espaço
+#Changes - in the arguments for blank spaces
 i = 0
 for a in args:
 	args[i] = a.replace('-', ' ')
@@ -16,6 +17,7 @@ for a in args:
 	
 class Song:
 	def __init__(self, song, artist, album, genre, num):
+		#File attributes
 		self.song = eyed3.load(song)
 		self.song_name = song
 		self.artist = artist
@@ -30,10 +32,12 @@ class Song:
 		if '-' in self.song_name:
 			self.song_name = self.song_name.split('-')[0]
 		
-		if '(Official' in self.song_name or '(official' in self.song_name or '[official' in self.song_name or '[OFF' in self.song_name:
-			self.song_name = self.song_name.split('(')[0]	
+		for a in junk.junk:
+			if a in self.song_name:
+				self.song_name = self.song_name.split(a)[0]
 	
 	def metadata(self):
+		#Sets the metadata tags
 		self.song.tag.title = self.song_name
 		self.song.tag.artist = self.artist
 		self.song.tag.album = self.album
@@ -42,28 +46,27 @@ class Song:
 		
 		self.song.tag.save()
 
-n = 1
 
-#Se houver
+n = 1	#File counter
 while True:
 		
-	#Musica mais antiga
+	#oldest file
 	arq = min(glob.glob('*.mp3'), key=os.path.getctime)
 
-	#Se o mais antigo não tiver sido alterado
+	#if the oldest file has not been already renamed by mp3s
 	if '-' in arq:
 		try:
-			#Altera Metadata
+			#Changes Metadata
 			Musica = Song(arq, args[0], args[1], args[2], n)
 			Musica.filter_name()
 			Musica.metadata()
 					
-			#Renomeia arquivo
+			#Renames file
 			os.rename(arq, Musica.song_name+'.mp3')
 					
 			print('\033[96m' + arq + '\033[0m', '---->','\033[92m' + Musica.song_name+'.mp3' + '\033[0m')
 			
-			#Proxima musica		
+			#Next file
 			n+=1
 		except:
 			break
