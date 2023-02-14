@@ -1,5 +1,11 @@
 <h1 align="center">MP3S</h1>
 
+<img align="left" src='https://img.shields.io/github/license/H3r4kl3s/mp3s'>
+<img align="left" src='https://img.shields.io/pypi/pyversions/eyed3'>
+<img align="left" src='https://img.shields.io/github/languages/code-size/H3r4kl3s/mp3s'>
+
+<br>
+
 <h2 align="center">mp3s is a Python Software -- thought to be used with mp3 files downloaded using youtube-dl --  that makes the files' names more user friendly and changes the metadata of the file. </h2>
 
 **HOW TO USE**:
