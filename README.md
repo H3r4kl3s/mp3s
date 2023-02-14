@@ -1,6 +1,6 @@
 <h1 align="center">MP3S</h1>
 
-<h2 style="text-indent: justify;">mp3s is a Python Software -- thought to be used with mp3 files downloaded using youtube-dl --  that makes the files' names more user friendly and changes the metadata of the file. </h2>
+<h2 align="center">mp3s is a Python Software -- thought to be used with mp3 files downloaded using youtube-dl --  that makes the files' names more user friendly and changes the metadata of the file. </h2>
 
 **HOW TO USE**:
 
