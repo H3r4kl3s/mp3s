@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 
+#By: H3r4kl3s
+
 import sys, os
 import glob
 import string
